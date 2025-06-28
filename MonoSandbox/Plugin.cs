@@ -1,5 +1,4 @@
 ﻿using BepInEx;
-using GorillaLocomotion;
 using HarmonyLib;
 using MonoSandbox.Behaviours;
 using MonoSandbox.Behaviours.UI;
@@ -9,6 +8,8 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilla;
+using Utilla.Attributes;
+using Player = GorillaLocomotion.GTPlayer;
 
 namespace MonoSandbox
 {
@@ -244,7 +245,7 @@ namespace MonoSandbox
         }
 
         [ModdedGamemodeJoin]
-        public void OnJoin(string gamemode)
+        public void OnJoin()
         {
             InRoom = true;
 
@@ -255,7 +256,7 @@ namespace MonoSandbox
         }
 
         [ModdedGamemodeLeave]
-        public void OnLeave(string gamemode)
+        public void OnLeave()
         {
             InRoom = false;
 

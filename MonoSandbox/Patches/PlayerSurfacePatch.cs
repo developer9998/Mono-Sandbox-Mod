@@ -1,6 +1,7 @@
 ﻿using GorillaLocomotion;
 using HarmonyLib;
 using UnityEngine;
+using Player = GorillaLocomotion.GTPlayer;
 
 namespace MonoSandbox.Patches
 {

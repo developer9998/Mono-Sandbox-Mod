@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Player = GorillaLocomotion.GTPlayer;
 
 namespace MonoSandbox.Behaviours
 {
@@ -20,7 +21,7 @@ namespace MonoSandbox.Behaviours
                 _isAttacking = true;
                 GetComponent<AudioSource>().Play();
 
-                Rigidbody PlayerRigidbody = GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>();
+                Rigidbody PlayerRigidbody = Player.Instance.GetComponent<Rigidbody>();
                 PlayerRigidbody.AddExplosionForce(1500f * 6f * Mathf.Sqrt(PlayerRigidbody.mass), transform.position, 7.5f + 6f / 1.25f);
             }
             if (Health <= 0)

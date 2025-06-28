@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR;
+using Player = GorillaLocomotion.GTPlayer;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class WeaponManager : MonoBehaviour
     private float trigger, lastShot;
     private readonly float weaponMult = 2f;
 
-    private bool canFire = true, canChange = true;
+    private bool canFire = true;
+    private readonly bool canChange = true;
     public bool rightHanded = true, editMode, primary, secondary;
 
     public int currentWeapon = 0;
@@ -76,7 +78,7 @@ public class WeaponManager : MonoBehaviour
                         HeldWeapon.transform.GetComponentInChildren<ParticleSystem>().Play();
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
                         GameObject hitPoint = Instantiate(HitPointParticle);
                         hitPoint.transform.position = hit.point;
                         hitPoint.transform.forward = hit.normal;
@@ -96,7 +98,7 @@ public class WeaponManager : MonoBehaviour
                         HeldWeapon.transform.GetComponentInChildren<ParticleSystem>().Play();
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, -HeldWeapon.transform.GetChild(0).up, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, -HeldWeapon.transform.GetChild(0).up, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
                         GameObject hitPoint = Instantiate(HitPointParticle);
                         hitPoint.transform.position = hit.point;
                         hitPoint.transform.forward = hit.normal;
@@ -115,7 +117,7 @@ public class WeaponManager : MonoBehaviour
                         HeldWeapon.GetComponent<AudioSource>().PlayOneShot(HeldWeapon.GetComponent<AudioSource>().clip);
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        Physics.Raycast(HeldWeapon.transform.GetChild(6).position, -HeldWeapon.transform.GetChild(6).right, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(6).position, -HeldWeapon.transform.GetChild(6).right, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
                         if (hit.transform.name.Contains("MonoObject") && hit.transform.GetComponent<Renderer>() != null)
                         {
                             hit.transform.GetComponent<Renderer>().material.color = colourGradient.Evaluate(colourTimestamp);
@@ -130,12 +132,12 @@ public class WeaponManager : MonoBehaviour
                     if (holdingWeapon == 7)
                     {
                         lastShot = Time.time;
-                        GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 2200);
+                        Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 2200);
                         HeldWeapon.GetComponent<AudioSource>().PlayOneShot(HeldWeapon.GetComponent<AudioSource>().clip);
                         HeldWeapon.transform.GetComponentInChildren<ParticleSystem>().Play();
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
                         GameObject hitPoint = Instantiate(HitPointParticle);
                         hitPoint.transform.position = hit.point;
                         hitPoint.transform.forward = hit.normal;
@@ -151,12 +153,12 @@ public class WeaponManager : MonoBehaviour
                     if (holdingWeapon == 1)
                     {
                         lastShot = Time.time;
-                        GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 2200);
+                        Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 2200);
                         HeldWeapon.GetComponent<AudioSource>().PlayOneShot(HeldWeapon.GetComponent<AudioSource>().clip);
                         HeldWeapon.transform.GetComponentInChildren<ParticleSystem>().Play();
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
                         GameObject hitPoint = Instantiate(HitPointParticle);
                         hitPoint.transform.position = hit.point;
                         hitPoint.transform.forward = hit.normal;
@@ -197,8 +199,8 @@ public class WeaponManager : MonoBehaviour
                         HeldWeapon.transform.GetComponentInChildren<ParticleSystem>().Play();
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 4500);
-                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 4500);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
                         GameObject hitPoint = Instantiate(HitPointParticle);
                         hitPoint.transform.position = hit.point;
                         hitPoint.transform.forward = hit.normal;
@@ -218,8 +220,8 @@ public class WeaponManager : MonoBehaviour
                         HeldWeapon.transform.GetComponentInChildren<ParticleSystem>().Play();
                         HeldWeapon.GetComponent<SineGunAnimation>().Play();
 
-                        GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 4500);
-                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, GorillaLocomotion.Player.Instance.locomotionEnabledLayers);
+                        Player.Instance.GetComponent<Rigidbody>().AddForce(-HeldWeapon.transform.GetChild(0).forward * weaponForce * 4500);
+                        Physics.Raycast(HeldWeapon.transform.GetChild(0).position, HeldWeapon.transform.GetChild(0).forward, out RaycastHit hit, 1000, Player.Instance.locomotionEnabledLayers);
 
                         GameObject ExplodeOBJ = Instantiate(LaserExplode);
                         ExplodeOBJ.transform.SetParent(itemsFolder.transform);
@@ -242,7 +244,7 @@ public class WeaponManager : MonoBehaviour
                             nearyby.GetComponent<Explode>()?.ExplodeObject();
                         }
 
-                        Rigidbody PlayerRigidbody = GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>();
+                        Rigidbody PlayerRigidbody = Player.Instance.GetComponent<Rigidbody>();
                         PlayerRigidbody.AddExplosionForce(2500f * 4f * Mathf.Sqrt(PlayerRigidbody.mass), hit.point, 5 + (0.75f * 4f));
 
                         HapticManager.Haptic(HapticManager.HapticType.Use);
@@ -498,7 +500,7 @@ public class GrenadeManager : MonoBehaviour
                 Rigidbody rb = Ring.AddComponent<Rigidbody>();
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 rb.interpolation = RigidbodyInterpolation.Interpolate;
-                rb.velocity = _velEstimator.linearVelocity + GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity;
+                rb.velocity = _velEstimator.linearVelocity + Player.Instance.bodyCollider.attachedRigidbody.velocity;
 
                 routine = Explosion();
                 StartCoroutine(routine);
@@ -544,7 +546,7 @@ public class GrenadeManager : MonoBehaviour
             nearyby.GetComponent<MineDetonate>()?.Explode();
             nearyby.GetComponent<Explode>()?.ExplodeObject();
         }
-        Rigidbody PlayerRigidbody = GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>();
+        Rigidbody PlayerRigidbody = Player.Instance.GetComponent<Rigidbody>();
         PlayerRigidbody.AddExplosionForce(2500f * 5 * Mathf.Sqrt(PlayerRigidbody.mass), Holdable.transform.position, 5 + (0.75f * 5f));
 
         yield return new WaitForSeconds(3f);
